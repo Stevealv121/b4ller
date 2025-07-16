@@ -2,9 +2,7 @@
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
-    TableFooter,
     TableHead,
     TableHeader,
     TableRow,
@@ -28,7 +26,7 @@ export default function PlayersPage() {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {players.map((player: any) => (
+                {players.map((player: Player) => (
                     <TableRow key={player.id}>
                         <TableCell className="font-medium">{player.name}</TableCell>
                         <TableCell className="font-medium">{player.mmr}</TableCell>

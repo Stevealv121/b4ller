@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import { defineConfig } from 'drizzle-kit';
+/* eslint-disable */
 require('dotenv').config({ path: '.env.local' });
 
 export default defineConfig({
