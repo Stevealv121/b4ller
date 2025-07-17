@@ -23,6 +23,7 @@ export default function PlayersPage() {
                 <TableRow>
                     <TableHead className="w-[100px]">Name</TableHead>
                     <TableHead className="w-[100px]">MMR</TableHead>
+                    <TableHead className="w-[100px]">Searching for a match</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -30,6 +31,7 @@ export default function PlayersPage() {
                     <TableRow key={player.id}>
                         <TableCell className="font-medium">{player.name}</TableCell>
                         <TableCell className="font-medium">{player.mmr}</TableCell>
+                        <TableCell className="font-medium">{player.searching_match ? "Yes" : "No"}</TableCell>
                     </TableRow>
                 ))}
             </TableBody>
