@@ -17,7 +17,7 @@ export default function Home() {
             },
             secondary: {
               text: "Learn More",
-              url: "/home",
+              url: "/dashboard",
             },
           }}
           image={{

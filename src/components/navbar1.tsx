@@ -53,13 +53,13 @@ interface Navbar1Props {
 
 const Navbar1 = ({
   logo = {
-    url: "/home",
+    url: "/dashboard",
     src: "/assets/icon/logo.png",
     alt: "logo",
     title: "b4ller",
   },
   menu = [
-    { title: "Home", url: "/home" },
+    { title: "Home", url: "/dashboard" },
     {
       title: "Matches",
       url: "/games",
@@ -123,78 +123,78 @@ const Navbar1 = ({
   },
 }: Navbar1Props) => {
   return (
-    <section className="py-4">
-      <div className="container">
-        {/* Desktop Menu */}
-        <nav className="hidden justify-between lg:flex">
-          <div className="flex items-center gap-6">
-            {/* Logo */}
-            <a href={logo.url} className="flex items-center gap-2">
-              <img src={logo.src} className="max-h-8" alt={logo.alt} />
-              <span className="text-lg font-semibold tracking-tighter">
-                {logo.title}
-              </span>
-            </a>
-            <div className="flex items-center">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  {menu.map((item) => renderMenuItem(item))}
-                </NavigationMenuList>
-              </NavigationMenu>
-            </div>
-          </div>
-          <div className="flex gap-2">
-            <Button asChild variant="outline" size="sm">
-              <a href={auth.login.url}>{auth.login.title}</a>
-            </Button>
-            <Button asChild size="sm">
-              <a href={auth.signup.url}>{auth.signup.title}</a>
-            </Button>
-          </div>
-        </nav>
+    <section className="py-4 w-full">
+      {/* Remove container from here */}
+      {/* Desktop Menu */}
+      <nav className="hidden lg:flex items-center w-full px-4">
+        {/* Logo */}
+        <div className="flex items-center gap-2">
+          <a href={logo.url} className="flex items-center gap-2">
+            <img src={logo.src} className="max-h-8" alt={logo.alt} />
+            <span className="text-lg font-semibold tracking-tighter">
+              {logo.title}
+            </span>
+          </a>
+        </div>
+        {/* Centered Menu */}
+        <div className="flex-1 flex justify-center">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {menu.map((item) => renderMenuItem(item))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+        {/* Auth Buttons */}
+        <div className="flex gap-2">
+          <Button asChild variant="outline" size="sm">
+            <a href={auth.login.url}>{auth.login.title}</a>
+          </Button>
+          <Button asChild size="sm">
+            <a href={auth.signup.url}>{auth.signup.title}</a>
+          </Button>
+        </div>
+      </nav>
+      {/* Mobile Menu */}
+      <div className="container block lg:hidden">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <a href={logo.url} className="flex items-center gap-2">
+            <img src={logo.src} className="max-h-8" alt={logo.alt} />
+          </a>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Menu className="size-4" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent className="overflow-y-auto">
+              <SheetHeader>
+                <SheetTitle>
+                  <a href={logo.url} className="flex items-center gap-2">
+                    <img src={logo.src} className="max-h-8" alt={logo.alt} />
+                  </a>
+                </SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col gap-6 p-4">
+                <Accordion
+                  type="single"
+                  collapsible
+                  className="flex w-full flex-col gap-4"
+                >
+                  {menu.map((item) => renderMobileMenuItem(item))}
+                </Accordion>
 
-        {/* Mobile Menu */}
-        <div className="block lg:hidden">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <a href={logo.url} className="flex items-center gap-2">
-              <img src={logo.src} className="max-h-8" alt={logo.alt} />
-            </a>
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Menu className="size-4" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent className="overflow-y-auto">
-                <SheetHeader>
-                  <SheetTitle>
-                    <a href={logo.url} className="flex items-center gap-2">
-                      <img src={logo.src} className="max-h-8" alt={logo.alt} />
-                    </a>
-                  </SheetTitle>
-                </SheetHeader>
-                <div className="flex flex-col gap-6 p-4">
-                  <Accordion
-                    type="single"
-                    collapsible
-                    className="flex w-full flex-col gap-4"
-                  >
-                    {menu.map((item) => renderMobileMenuItem(item))}
-                  </Accordion>
-
-                  <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline">
-                      <a href={auth.login.url}>{auth.login.title}</a>
-                    </Button>
-                    <Button asChild>
-                      <a href={auth.signup.url}>{auth.signup.title}</a>
-                    </Button>
-                  </div>
+                <div className="flex flex-col gap-3">
+                  <Button asChild variant="outline">
+                    <a href={auth.login.url}>{auth.login.title}</a>
+                  </Button>
+                  <Button asChild>
+                    <a href={auth.signup.url}>{auth.signup.title}</a>
+                  </Button>
                 </div>
-              </SheetContent>
-            </Sheet>
-          </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </section>
