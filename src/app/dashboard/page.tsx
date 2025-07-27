@@ -21,11 +21,45 @@ import {
 } from "@/components/ui/sidebar"
 import { ChevronDownIcon } from "lucide-react"
 import React from "react"
+import OpenGames from "./openGames"
 
 export default function Page() {
 
   const [open, setOpen] = React.useState(false)
   const [date, setDate] = React.useState<Date | undefined>(undefined)
+
+  const mockOpenGamesProps: any = {
+    games: [
+      {
+        id: "game-1",
+        location: "San Jose, Costa Rica",
+        pricePerPerson: 15.00,
+        currentPlayers: 7,
+        maxPlayers: 10,
+      },
+      {
+        id: "game-2",
+        location: "Liberia, Costa Rica",
+        pricePerPerson: 20.00,
+        currentPlayers: 5,
+        maxPlayers: 10,
+      },
+      {
+        id: "game-3",
+        location: "Manuel Antonio, Costa Rica",
+        pricePerPerson: 12.50,
+        currentPlayers: 9,
+        maxPlayers: 10,
+      },
+      {
+        id: "game-4",
+        location: "La Fortuna, Costa Rica",
+        pricePerPerson: 18.00,
+        currentPlayers: 2,
+        maxPlayers: 10,
+      },
+    ],
+  };
 
   return (
     <SidebarProvider>
@@ -137,6 +171,7 @@ export default function Page() {
                 </Button>
               </div>
             </form>
+            <OpenGames games={mockOpenGamesProps.games} />
           </div>
         </div>
       </SidebarInset>

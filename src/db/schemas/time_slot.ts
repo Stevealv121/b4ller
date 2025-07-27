@@ -1,5 +1,7 @@
 import { pgTable, bigserial, bigint, timestamp, integer, pgEnum, unique, index, primaryKey, serial, foreignKey } from "drizzle-orm/pg-core";
 import { field } from "./field";
+import { relations } from "drizzle-orm";
+import { match } from "./match";
 
 // Enum for slot_status
 export const slotStatusEnum = pgEnum("slot_status", ["available", "booked", "blocked"]);
@@ -25,13 +27,7 @@ export const time_slot = pgTable("time_slot", {
             .onDelete('cascade')
             .onUpdate('cascade')
     ]);
-// Note: Drizzle ORM does not natively support EXCLUDE constraints.
-// You can add it via a custom SQL statement after migration:
-// sql`ALTER TABLE time_slot ADD CONSTRAINT no_overlap EXCLUDE USING gist (
-//   field_id WITH =,
-//   tstzrange(start_time, end_time) WITH &&
-//, (t) => [
-//   unique().on(t.id, t.name),
-//   unique('custom_name').on(t.id, t.name)
-// ]);
-// )`
+
+export const timeSlotRelations = relations(time_slot, ({ many }) => ({
+    matches: many(match),
+}));
