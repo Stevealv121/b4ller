@@ -28,7 +28,15 @@ export default function Page() {
   const [open, setOpen] = React.useState(false)
   const [date, setDate] = React.useState<Date | undefined>(undefined)
 
-  const mockOpenGamesProps: any = {
+  type Game = {
+    id: string;
+    location: string;
+    pricePerPerson: number;
+    currentPlayers: number;
+    maxPlayers: number;
+  };
+
+  const mockOpenGamesProps: { games: Game[] } = {
     games: [
       {
         id: "game-1",
@@ -87,7 +95,7 @@ export default function Page() {
           {/* Header Section */}
           <div className="bg-black w-full py-8">
             <h1 className="text-2xl font-bold text-center text-white">
-              Wanna play? Let's find you a game!!!
+              Wanna play? Let`&apos;`s find you a game!!!
             </h1>
           </div>
 
