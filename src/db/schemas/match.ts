@@ -3,7 +3,7 @@ import { time_slot } from "./time_slot"
 import { player } from "./player";
 import { relations } from "drizzle-orm";
 
-export const match = pgTable("matches", {
+export const match = pgTable("match", {
     id: serial("id").primaryKey(),
     slotId: bigint("slot_id", { mode: "number" })
         .notNull()

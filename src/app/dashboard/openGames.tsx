@@ -1,15 +1,8 @@
+import { AvailableGames } from "@/interfaces";
 import React from "react";
 
-type Game = {
-    id: string;
-    location: string;
-    pricePerPerson: number;
-    currentPlayers: number;
-    maxPlayers: number;
-};
-
 type OpenGamesProps = {
-    games: Game[];
+    games: AvailableGames[];
 };
 
 const OpenGames: React.FC<OpenGamesProps> = ({ games }) => {
@@ -19,10 +12,15 @@ const OpenGames: React.FC<OpenGamesProps> = ({ games }) => {
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {games.map((game) => (
                     <div
-                        key={game.id}
+                        key={game.matchId}
                         className="bg-white shadow-md rounded-lg p-5 flex flex-col gap-2 border border-gray-200"
                     >
-                        <div className="font-semibold text-lg">{game.location}</div>
+                        <div className="font-semibold text-lg">
+                            {game.fieldName} - {game.sport}
+                        </div>
+                        <div className="text-gray-500 text-sm">
+                            {game.fieldAddress}, {game.fieldCity}
+                        </div>
                         <div className="text-gray-600">
                             Price per person: <span className="font-medium">${game.pricePerPerson}</span>
                         </div>
@@ -32,6 +30,9 @@ const OpenGames: React.FC<OpenGamesProps> = ({ games }) => {
                                 {game.currentPlayers}/{game.maxPlayers} (
                                 {game.maxPlayers - game.currentPlayers} spaces left)
                             </span>
+                        </div>
+                        <div className="text-gray-600 text-sm">
+                            {game.startTime.toLocaleString()} - {game.endTime.toLocaleTimeString()}
                         </div>
                     </div>
                 ))}
